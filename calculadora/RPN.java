@@ -30,51 +30,39 @@ public class RPN {
 		return dato_arriba;
 	}
 	
-	public double resultado() {
+	public void pusher(String[] inputItems) {
 		double a, b;
-		int j;
-		
-		for(int i = 0; i < commando.length(); i++) {
-			if(Character.isDigit(commando.charAt(i))) {
-				double numero;
-				
-				// obtener un string a partir del numero
-				String temp = "";
-				for(j = 0; (j < 100) && (Character.isDigit(commando.charAt(i)) || (commando.charAt(i) == '.')); j++, i++) {
-					temp = temp + String.valueOf(commando.charAt(i));
-				}
-				
-				numero = Double.parseDouble(temp);
-				pushPila(numero);
-			} else if (commando.charAt(i) == '+') {
+				  
+        for (String item : inputItems) {
+        	if (Character.isDigit(item.charAt(0))) {
+        		double numero = Double.parseDouble(item);
+        		pushPila(numero);
+        	} else {
 				b = popPila();
 				a = popPila();
-				pushPila(a+ b);
-			} else if (commando.charAt(i) == '-') {
-				b = popPila();
-				a = popPila();
-				pushPila(a - b);
-			} else if (commando.charAt(i) == '*') {
-				b = popPila();
-				a = popPila();
-				pushPila(a * b);
-			} else if (commando.charAt(i) == '/') {
-				b = popPila();
-				a = popPila();
-				pushPila(a / b);
-			} else if (commando.charAt(i) == '^') {
-				b = popPila();
-				a = popPila();
-				pushPila(Math.pow(a,  b));
-			} else if (commando.charAt(i) == '%') {
-				b = popPila();
-				a = popPila();
-				pushPila(a%b);
-			} else if (commando.charAt(i) != ' ') {
-				throw new IllegalArgumentException();
-			}
-		}
-		
+				if (item.equals("+")) {
+					pushPila(a + b);
+				} else if (item.equals("-")) {
+					pushPila(a - b);
+				} else if (item.equals("*")) {
+					pushPila(a * b);
+				} else if (item.equals("/")) {
+					pushPila(a / b);
+				} else if (item.equals("^")) {
+					pushPila(Math.pow(a,  b));
+				} else if (item.equals("%")) {
+					pushPila(a%b);
+				} else if (item != " ") {
+					throw new IllegalArgumentException();
+				}	
+        	}
+        }
+	}
+	
+	
+	public double resultado() {
+		String[] inputItems = commando.split(" ");
+		pusher(inputItems);
 		double val = popPila();
 		
 		if (arriba != null) {

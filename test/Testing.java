@@ -29,11 +29,23 @@ public class Testing extends TestCase {
 	}
 	
 	@Test
-	public void testOthers() {
+	public void testOtros() {
 		String linea = "13 4 /";
 		RPN calc = new RPN(linea);
 		
 		assertEquals(3.250000, calc.resultado());
 		assertEquals( 13.0 / 4.0 , calc.resultado());
+		
+		linea = "13 4 ^";
+		calc = new RPN(linea);
+		
+		assertEquals(Math.pow(13, 4), calc.resultado());
+		
+		linea = "13 4 %";
+		calc = new RPN(linea);
+		
+		assertEquals(13.0 % 4.0, calc.resultado());
+		
+		
 	}
 }
