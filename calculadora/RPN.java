@@ -1,8 +1,8 @@
 package calculadora;
 
 class NodoPila {
-	public NodoPila abajo;
-	public double dato;
+	protected NodoPila abajo;
+	protected double dato;
 	
 	public NodoPila(double dato, NodoPila abajo) {
 		this.dato = dato;
@@ -19,18 +19,18 @@ public class RPN {
 		this.commando = commando;
 	}
 	
-	public void pushPila(double nuevo_dato) {
+	private void pushPila(double nuevo_dato) {
 		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, arriba);
 		arriba = nuevo_nodo;
 	}
 	
-	public double popPila() {
+	private double popPila() {
 		double dato_arriba = arriba.dato;
 		arriba = arriba.abajo;
 		return dato_arriba;
 	}
 	
-	public void pusher(String[] inputItems) {
+	private void pusher(String[] inputItems) {
 		double a, b;
 				  
         for (String item : inputItems) {
