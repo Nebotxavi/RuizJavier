@@ -1,15 +1,24 @@
 package calculadora;
 
 class NodoPila {
+	public NodoPila abajo;
+	public double dato;
+	
 	public NodoPila(double dato, NodoPila abajo) {
 		this.dato = dato;
 		this.abajo = abajo;
 	}
-	public NodoPila abajo;
-	public double dato;
 }
 
 public class RPN {
+	private String commando;
+	private NodoPila arriba;
+	
+	public RPN(String commando) {
+		arriba = null;
+		this.commando = commando;
+	}
+	
 	public void pushPila(double nuevo_dato) {
 		NodoPila nuevo_nodo = new NodoPila(nuevo_dato, arriba);
 		arriba = nuevo_nodo;
@@ -21,17 +30,11 @@ public class RPN {
 		return dato_arriba;
 	}
 	
-	public RPN(String commando) {
-		arriba = null;
-		this.commando = commando;
-	}
-	
 	public double resultado() {
 		double a, b;
 		int j;
 		
 		for(int i = 0; i < commando.length(); i++) {
-			// si es un digito
 			if(Character.isDigit(commando.charAt(i))) {
 				double numero;
 				
@@ -41,7 +44,6 @@ public class RPN {
 					temp = temp + String.valueOf(commando.charAt(i));
 				}
 				
-				// convertir a double y anadir a la pila
 				numero = Double.parseDouble(temp);
 				pushPila(numero);
 			} else if (commando.charAt(i) == '+') {
@@ -81,7 +83,4 @@ public class RPN {
 		
 		return val;
 	}
-	
-	private String commando;
-	private NodoPila arriba;
 }

@@ -1,7 +1,6 @@
 package test;
 
 import org.junit.Test;
-import org.junit.*;
 import junit.framework.TestCase; 
 
 import calculadora.RPN;

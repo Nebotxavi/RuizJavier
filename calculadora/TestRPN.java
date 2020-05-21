@@ -17,8 +17,9 @@ import java.util.Scanner;
 public class TestRPN {
 	/* metodo main */
 	public static void main(String[] args) {
+		Scanner in;
 		while(true) {
-			Scanner in = new Scanner(System.in);
+			in = new Scanner(System.in);
 			System.out.println("Introduce expresion Postfija o teclea \"fin\".");
 			String linea = in.nextLine();
 			if (linea.equals("fin")) {
@@ -29,7 +30,7 @@ public class TestRPN {
 				System.out.printf("El resultado es %f\n", calc.resultado());
 			}
 		}
-
+		in.close();
 	}
 
 }
