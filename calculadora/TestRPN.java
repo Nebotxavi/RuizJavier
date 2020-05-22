@@ -2,10 +2,13 @@ package calculadora;
 
 import java.util.Scanner;
 
+/**
+ * Clase para probar la clase RPN.
+ * @see resultado
+ */
+
 public class TestRPN {
-	/**
-	 * Clase para probar la clase RPN.
-	 */
+
 	public static void main(String[] args) {
 		Scanner in;
 		while(true) {
